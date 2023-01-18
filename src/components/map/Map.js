@@ -1,17 +1,16 @@
 import { Fragment, useContext, useState, useMemo } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import { flexCenter } from '../theme/CustomTheme';
+import { flexCenter } from '../../theme/CustomTheme';
 import { useLoadScript, GoogleMap, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import { v4 as uuidv4 } from 'uuid';
 
-import Loader from '../components/Loading';
-import CenterButton from '../components/buttons/CenterButton';
-import MarkerImage from '../components/MarkerImage';
-import MarkerAddress from '../components/MarkerAddress';
+import Loader from './Loading';
+import MarkerImage from './MarkerImage';
+import MarkerAddress from './MarkerAddress';
 
-import AdventureContext from '../context/adventureContext';
-import useGeolocation from '../hooks/useGeolocation';
-import useGeoMarkers from '../hooks/useGeoMarkers';
+import AdventureContext from '../../context/adventureContext';
+import useGeolocation from '../../hooks/useGeolocation';
+import useGeoMarkers from '../../hooks/useGeoMarkers';
 
 const mapInfo = {
 
@@ -73,7 +72,6 @@ const Map = () => {
   // }, [coordinates.loaded]);
 
 
-
   const closeInfo = () => {
 
     setSelected(null);
@@ -108,15 +106,20 @@ const Map = () => {
 
   // Note: position of map needs to change for geolocation / search of a park (and maybe re-center to geolocation too) via state switch
 
+
   return (
 
-    <Box sx={{ ...flexCenter, position: "relative", height: "100vh" }}>
+    <Box sx={{...flexCenter, position: "relative", height: "100vh" }}>
 
       { coordinates.loaded ? (
 
         <GoogleMap mapContainerStyle={mapInfo.styles} zoom={markers.length > 0 ? 6 : 12} center={searchCoords ? searchCoords : center} options={mapInfo.options} onClick={closeInfo}>
 
+          { markers.length === 0 ? (
+
           <MarkerF position={searchCoords ? searchCoords : center} icon={{ url: 'https://cdn-icons-png.flaticon.com/512/8972/8972440.png', scaledSize: new window.google.maps.Size(50, 50) }} title="You are here" onLoad={loadGeo} />
+
+          ) : null }
 
           { markers?.map((marker) => (
 
@@ -149,12 +152,6 @@ const Map = () => {
             </Fragment>
 
           </InfoWindowF> )}
-
-          {/* <Box>
-
-            <CenterButton />
-
-          </Box> */}
 
         </GoogleMap>
 

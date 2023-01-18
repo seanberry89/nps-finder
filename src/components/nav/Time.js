@@ -1,10 +1,10 @@
 import { Fragment, useState, useEffect } from 'react';
 
-import Sunrise from './days/Sunrise';
-import Morning from './days/Morning';
-import Afternoon from './days/Afternoon';
-import Sunset from './days/Sunset';
-import Night from './days/Night';
+import Sunrise from '../days/Sunrise';
+import Morning from '../days/Morning';
+import Afternoon from '../days/Afternoon';
+import Sunset from '../days/Sunset';
+import Night from '../days/Night';
 
 const Time = () => {
 

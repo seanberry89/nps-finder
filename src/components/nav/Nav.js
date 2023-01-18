@@ -5,7 +5,7 @@ import NavLogo from './NavLogo';
 import Address from './Address';
 import Time from './Time';
 
-import useGeolocation from '../hooks/useGeolocation';
+import useGeolocation from '../../hooks/useGeolocation';
 
 const Nav = () => {
 
@@ -22,7 +22,7 @@ const Nav = () => {
             <Address />
             <Time />
           </Stack>
-          <Box sx={{ position: "fixed", top: 0, right: 0, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ position: "fixed", top: 12, right: 10, display: { xs: "none", md: "flex" } }}>
             <NavLogo />
           </Box>
         </Box>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Stack, styled, Typography } from '@mui/material';
-import { flexCenter } from '../theme/CustomTheme';
+import { flexCenter } from '../../theme/CustomTheme';
 import { FadeLoader } from 'react-spinners';
 
 const WhiteBackground = styled(Box) `

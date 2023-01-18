@@ -11,6 +11,7 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_ALERT,
+  CLEAR_MARKERS,
   REMOVE_ALERT } from './types';
 
 import axios from 'axios';
@@ -126,8 +127,6 @@ const AdventureState = (props) => {
       payload: park
     })
 
-    console.log(park);
-
   }
 
   // returns the position of the map to the geolocation coordinates
@@ -171,6 +170,15 @@ const AdventureState = (props) => {
 
   };
 
+  // clears markers
+  const clearMarkers = () => {
+
+    dispatch({
+      type: CLEAR_MARKERS
+    })
+
+  }
+
 
   return (
     <AdventureContext.Provider value={{
@@ -187,7 +195,8 @@ const AdventureState = (props) => {
       setPosition,
       setLoading,
       setError,
-      setAlert
+      setAlert,
+      clearMarkers
     }}>
       {props.children}
     </AdventureContext.Provider>

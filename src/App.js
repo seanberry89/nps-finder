@@ -4,9 +4,9 @@ import { flexColumn } from './theme/CustomTheme';
 
 import './App.css';
 
-import Nav from './components/Nav';
-import Map from './test/Map';
-import Footer from './components/Footer';
+import Nav from './components/nav/Nav';
+import Map from './components/map/Map';
+import Footer from './components/footer/Footer';
 
 // const Map = lazy(() => import('./test/Map'));
 // const Nav = lazy(() => import('./components/Nav'));

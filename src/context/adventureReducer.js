@@ -8,6 +8,7 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_ALERT,
+  CLEAR_MARKERS,
   REMOVE_ALERT } from './types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -68,6 +69,12 @@ export default (state, action) => {
       ...state,
       alert: action.payload
     }
+
+    case CLEAR_MARKERS:
+      return {
+        ...state,
+        markers: []
+      }
 
     case REMOVE_ALERT:
     return {

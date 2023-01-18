@@ -1,13 +1,13 @@
 import React from 'react';
 import { Box, Button, styled } from '@mui/material';
-import { flexCenter } from '../theme/CustomTheme';
 
-import logo from '../images/national-park-logo.png';
+import logo from './../../images/national-park-logo.png';
 
 const StyledButton = styled(Button) `
-  position: absolute;
-  top: 0;
-  right: 0;
+
+  width: 75px;
+  height: 75px;
+  border-radius: 30px;
 
   transition: transform 0.5s ease-in-out;
 
@@ -27,9 +27,9 @@ const NavLogo = () => {
   }
 
   return (
-    <Box sx={{ flexCenter, position: "absolute", top: 10, right: -20 }}>
+    <Box>
       <StyledButton onClick={HomeButton}>
-        <Box component="img" src={logo} sx={{ height: "60px", width: "125px" }} alt="logo" title="Refresh Location"></Box>
+        <Box component="img" src={logo} sx={{ height: "75px", width: "150px" }} alt="logo" title="Refresh Location"></Box>
       </StyledButton>
     </Box>
   )

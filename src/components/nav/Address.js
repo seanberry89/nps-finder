@@ -1,10 +1,10 @@
 import { Fragment, useContext, useState, useEffect } from 'react';
 import { Box, IconButton, Paper, Stack, styled, Typography } from '@mui/material';
-import { flexCenter } from '../theme/CustomTheme';
+import { flexCenter } from '../../theme/CustomTheme';
 import { MdCancel } from 'react-icons/md';
 
-import AdventureContext from '../context/adventureContext';
-import useGeolocation from '../hooks/useGeolocation';
+import AdventureContext from '../../context/adventureContext';
+import useGeolocation from '../../hooks/useGeolocation';
 
 import { v4 as uuidv4 } from 'uuid';
 

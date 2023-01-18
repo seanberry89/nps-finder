@@ -80,10 +80,10 @@ const ResultsItemButton = styled(ListItemButton) `
 
 `;
 
-const SearchButton = () => {
+const Search = () => {
 
   const adventureContext = useContext(AdventureContext);
-  const { searches, parks, searchParks, searchParksCoords, setMarkers } = adventureContext;
+  const { searches, searchParks, searchParksCoords, clearMarkers } = adventureContext;
 
   const [ didMount, setDidMount ] = useState(false);
   const [ text, setText ] = useState('');
@@ -122,11 +122,7 @@ const SearchButton = () => {
 
     setText('');
 
-    // if(length > 0){
-
-    //   setMarkers([]);
-
-    // }
+    clearMarkers();
 
   }
 
@@ -157,7 +153,7 @@ const SearchButton = () => {
 
       <Stack sx={{ width: "98%", height: "100%", px: 2 }} direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
 
-        <StyledTextField variant="standard" value={text} InputProps={{ disableUnderline: true }} placeholder="search for an adventure" onChange={onChange} onFocus={onFocus} onBlur={onBlur} data-enable-grammarly="false" />
+        <StyledTextField variant="standard" value={text} InputProps={{ disableUnderline: true }} placeholder="search for a national park" onChange={onChange} onFocus={onFocus} onBlur={onBlur} data-enable-grammarly="false" />
 
         <FiSearch color="#bebebe" size={25} />
 
@@ -192,5 +188,5 @@ const SearchButton = () => {
   )
 }
 
-export default SearchButton;
+export default Search;
 

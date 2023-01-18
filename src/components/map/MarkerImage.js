@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { flexCenter } from '../theme/CustomTheme';
+import { flexCenter } from '../../theme/CustomTheme';
 
 const MarkerImage = ({ image }) => {
 
