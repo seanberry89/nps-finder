@@ -1,29 +1,39 @@
 import { Fragment } from 'react';
-import { Box, CssBaseline } from '@mui/material';
-import { flexColumn } from './theme/CustomTheme';
+import { CssBaseline } from '@mui/material';
+import { useLoadScript } from '@react-google-maps/api';
 
 import './App.css';
 
 import Nav from './components/nav/Nav';
 import Map from './components/map/Map';
 import Footer from './components/footer/Footer';
+import Loader from './components/map/Loading';
 
-// const Map = lazy(() => import('./test/Map'));
-// const Nav = lazy(() => import('./components/Nav'));
-// const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
 
+  const { isLoaded } = useLoadScript({
+
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
+
+  });
+
   return (
     <Fragment>
-      <CssBaseline />
-      <Box sx={flexColumn}>
-        <Nav />
-        <Map />
-        <Footer />
-      </Box>
+
+      { isLoaded ? (
+
+        <Fragment>
+          <CssBaseline />
+          <Nav />
+          <Map />
+          <Footer />
+        </Fragment>
+
+      ) : ( <Loader /> ) }
+
     </Fragment>
   );
-}
+};
 
 export default App;

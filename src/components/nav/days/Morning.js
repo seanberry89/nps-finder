@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, IconButton, Paper, Stack, styled, Typography } from '@mui/material';
-import { flexCenter } from '../../theme/CustomTheme';
+import { flexCenter } from '../../../theme/CustomTheme';
 import { BsFillSunFill } from 'react-icons/bs';
 import { MdCancel } from 'react-icons/md';
 

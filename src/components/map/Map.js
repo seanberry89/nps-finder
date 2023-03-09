@@ -1,47 +1,43 @@
 import { Fragment, useContext, useState, useMemo } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { flexCenter } from '../../theme/CustomTheme';
-import { useLoadScript, GoogleMap, MarkerF, InfoWindowF } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import { v4 as uuidv4 } from 'uuid';
 
 import Loader from './Loading';
 import MarkerImage from './MarkerImage';
 import MarkerAddress from './MarkerAddress';
 
-import AdventureContext from '../../context/adventureContext';
+import ParkContext from '../../context/parkContext';
 import useGeolocation from '../../hooks/useGeolocation';
 import useGeoMarkers from '../../hooks/useGeoMarkers';
 
-const mapInfo = {
 
-  styles: {
-    height: "100vh",
-    width: "100%"
+const options = {
+
+  mapId: "6da87616724ec22e",
+  disableDefaultUI: true,
+  zoomControl: true,
+  zoomControlOptions: {
+    position: 8
   },
+  clickableIcons: false,
+  keyboardShortcuts: false
 
-  options: {
-    mapId: "6da87616724ec22e",
-    disableDefaultUI: true,
-    zoomControl: true,
-    zoomControlOptions: {
-      position: 8
-    },
-    clickableIcons: false,
-    keyboardShortcuts: false
-  }
+};
 
-}
+const mapContainerStyle = {
+
+  height: "100vh",
+  width: "100%"
+
+};
+
 
 const Map = () => {
 
-  const { isLoaded, loadError } = useLoadScript({
-
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
-
-  });
-
-  const adventureContext = useContext(AdventureContext);
-  const { markers, searchCoords, setAlert } = adventureContext;
+  const parkContext = useContext(ParkContext);
+  const { markers, searchCoords, setShowSearch } = parkContext;
 
   const coordinates = useGeolocation();
   const { latitude, longitude } = coordinates;
@@ -52,31 +48,17 @@ const Map = () => {
 
   const center = useMemo(() => (
     { lat: latitude, lng: longitude }
-      // eslint-disable-next-line
-  ), [coordinates.loaded]);
+  ), [latitude, longitude]);
+
 
   const id = uuidv4();
+
 
   // Note: create a conditional to update the position of the map when the map loads, when a park is searched and selected, and when the map needs to be positioned back to the geolocation (comparison of two states: coordinates and park search)
 
   // undefined value because position hasn't been given the coords yet
 
   // Note: what if I were to use the marker coordinates as its own state for the park search?
-
-  // useEffect(() => {
-  //   if(coordinates.loaded){
-
-  //     setPosition({ lat: latitude, lng: longitude });
-
-  //   }
-  // }, [coordinates.loaded]);
-
-
-  const closeInfo = () => {
-
-    setSelected(null);
-
-  };
 
 
   const loadGeo = (marker) => {
@@ -92,40 +74,34 @@ const Map = () => {
   };
 
 
-  // Note: what if I remove the value of the position when this event happens?
-  // const onDragEnd = () => {
+  const clickMap = () => {
 
-  // };
+    setSelected(null);
 
+    setShowSearch(false);
 
-  if(!isLoaded){ return ( <Loader /> ) };
-  if(loadError){ return setAlert( "this is an error message" ) };
-
-
-  // Note: ternary operator can be inserted inside of prop "center," such as this: center={search ? blank : blank } or even center={{ lat: search ? blank : blank, lng: search ? blank ? blank }}
-
-  // Note: position of map needs to change for geolocation / search of a park (and maybe re-center to geolocation too) via state switch
-
+  };
+  
 
   return (
 
-    <Box sx={{...flexCenter, position: "relative", height: "100vh" }}>
+    <Box sx={{ ...flexCenter, position: "relative" }}>
 
       { coordinates.loaded ? (
 
-        <GoogleMap mapContainerStyle={mapInfo.styles} zoom={markers.length > 0 ? 6 : 12} center={searchCoords ? searchCoords : center} options={mapInfo.options} onClick={closeInfo}>
+        <GoogleMap mapContainerStyle={mapContainerStyle} zoom={markers.length > 0 ? 6 : 12} center={searchCoords ? searchCoords : center} options={options} onClick={clickMap}>
 
-          { markers.length === 0 ? (
+          { markers.length === 0 && (
 
           <MarkerF position={searchCoords ? searchCoords : center} icon={{ url: 'https://cdn-icons-png.flaticon.com/512/8972/8972440.png', scaledSize: new window.google.maps.Size(50, 50) }} title="You are here" onLoad={loadGeo} />
 
-          ) : null }
+          ) }
 
           { markers?.map((marker) => (
 
             <MarkerF key={marker.id} position={{ lat: parseFloat(marker.latitude), lng: parseFloat(marker.longitude) }} title={marker.fullName} icon={{ url: 'https://cdn-icons-png.flaticon.com/512/3175/3175145.png', scaledSize: new window.google.maps.Size(35, 35) }} onClick={() => setSelected(marker)} animation={window.google.maps.Animation.DROP} />
 
-          ))}
+          )) }
 
           { selected && ( <InfoWindowF position={{ lat: parseFloat(selected.latitude), lng: parseFloat(selected.longitude)}} onCloseClick={() => setSelected(null)}>
 
@@ -159,7 +135,7 @@ const Map = () => {
 
     </Box>
 
-    )
-  }
+    );
+  };
 
 export default Map;

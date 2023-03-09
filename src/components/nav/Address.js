@@ -3,7 +3,7 @@ import { Box, IconButton, Paper, Stack, styled, Typography } from '@mui/material
 import { flexCenter } from '../../theme/CustomTheme';
 import { MdCancel } from 'react-icons/md';
 
-import AdventureContext from '../../context/adventureContext';
+import ParkContext from '../../context/parkContext';
 import useGeolocation from '../../hooks/useGeolocation';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -29,12 +29,14 @@ padding: 0;
 
 const Address = () => {
 
-  const adventureContext = useContext(AdventureContext);
-  const { address, reverseGeo } = adventureContext;
+  const parkContext = useContext(ParkContext);
+  const { geoAddress, parkAddress, reverseGeo } = parkContext;
 
   const [visible, setVisible] = useState(true);
 
   const coordinates = useGeolocation();
+
+  let geo = geoAddress.results;
 
   const id = uuidv4();
 
@@ -45,25 +47,21 @@ const Address = () => {
 
       reverseGeo(coordinates);
 
-    }
+    };
 
     // eslint-disable-next-line
   }, [coordinates]);
-
-
-  let items = address.results;
 
 
   const closeBtn = () => {
 
     setVisible(false);
 
-  }
+  };
+
 
   return (
     <Fragment>
-
-      {/* edit this component as a ternary operator, so ? and :, so the data appears via geolocation or search feature */}
 
       { visible && (
 
@@ -71,11 +69,26 @@ const Address = () => {
           <StyledPaper elevation={6}>
             <CloseButton sx={{ position: "absolute", top: -3, left: -5 }} onClick={closeBtn}><MdCancel color="#487021" size={20} /></CloseButton>
             <Stack sx={{ mt: 1.5 }} justifyContent="flex-start" alignItems="flex-start" direction="column" spacing={-0.5}>
-              <Typography variant="body2">Estimated Address:</Typography>
-              { items && items.slice(0, 1).map((item) => (
-                  <Typography key={id} variant="h6" sx={{ fontFamily: "Roboto", mt: 2 }}>{item.formatted_address.replace(", USA", "")}</Typography>
-                )
+
+              { !parkAddress ? (
+
+                <Fragment>
+                  <Typography variant="body2">Estimated User Address:</Typography>
+                  { geo && geo.slice(0, 1).map((item) => (
+                      <Typography key={id} variant="h6" fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{item.formatted_address.replace(", USA", "")}</Typography>
+                    )
+                  )}
+                </Fragment>
+
+              ) : (
+
+                <Fragment>
+                  <Typography fontWeight={400} variant="body2">Searched {parkAddress.designation}:</Typography>
+                  <Typography key={id} variant="h6" fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{parkAddress.fullName}, {parkAddress.states}</Typography>
+                </Fragment>
+
               )}
+
             </Stack>
           </StyledPaper>
         </Box>
@@ -83,7 +96,7 @@ const Address = () => {
       )}
 
     </Fragment>
-  )
-}
+  );
+};
 
 export default Address;

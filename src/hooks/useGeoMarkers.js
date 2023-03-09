@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import AdventureContext from '../context/adventureContext';
+import AdventureContext from '../context/parkContext';
 import useGeolocation from './useGeolocation';
 
 const useGeoMarkers = (searchCoords) => {
@@ -32,7 +32,7 @@ const useGeoMarkers = (searchCoords) => {
 
               setMarkers(park);
 
-            }, 250 );
+            }, 250);
 
           } else {
 

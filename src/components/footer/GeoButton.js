@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Box, Button, Stack, styled, Typography } from '@mui/material';
 import { RiCompass3Line } from 'react-icons/ri';
-import AdventureContext from '../../context/adventureContext';
+import AdventureContext from '../../context/parkContext';
 
 const StyledButton = styled(Button) `
 
@@ -15,23 +15,27 @@ const StyledButton = styled(Button) `
 
 `;
 
-const GeoButton = () => {
+const GeoButton = ({ text, setText }) => {
 
   const adventureContext = useContext(AdventureContext);
   const { markers, findMarkers } = adventureContext;
 
-  // const length = Object.keys(parks).length;
 
   const onClick = () => {
 
-    // fix this logic: enable the user to re-click the button after searching for a new park
     if(markers.length <= 0){
 
       findMarkers();
 
     };
 
-  }
+    if(text){
+
+      setText("");
+
+    };
+
+  };
 
   return (
 

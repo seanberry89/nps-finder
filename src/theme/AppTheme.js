@@ -20,12 +20,12 @@ const theme = createTheme({
       variant: "text"
     }
   }
-})
+});
 
 const AppTheme = (props) => {
   return (
     <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
-  )
-}
+  );
+};
 
 export default AppTheme;

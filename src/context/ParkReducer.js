@@ -3,16 +3,15 @@ import {
   FIND_MARKERS,
   SEARCH_PARKS,
   SEARCH_PARKS_COORDS,
+  SEARCH_PARKS_ADDRESS,
+  SET_SHOW_SEARCH,
   SET_MARKERS,
   SET_POSITION,
   SET_LOADING,
   SET_ERROR,
-  SET_ALERT,
-  CLEAR_MARKERS,
-  REMOVE_ALERT } from './types';
+  CLEAR_MARKERS } from './actions';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (state, action) => {
+const ParkReducer = (state, action) => {
   switch(action.type) {
 
     case SEARCH_PARKS:
@@ -27,10 +26,22 @@ export default (state, action) => {
         searchCoords: action.payload
       }
 
+    case SEARCH_PARKS_ADDRESS:
+    return {
+      ...state,
+      parkAddress: action.payload
+    }
+
+    case SET_SHOW_SEARCH:
+      return {
+        ...state,
+        showSearch: action.payload
+      }
+
     case REVERSE_GEO:
       return {
         ...state,
-        address: action.payload
+        geoAddress: action.payload
       }
 
     case FIND_MARKERS:
@@ -64,25 +75,15 @@ export default (state, action) => {
       error: action.payload
     }
 
-    case SET_ALERT:
-    return {
-      ...state,
-      alert: action.payload
-    }
-
     case CLEAR_MARKERS:
       return {
         ...state,
         markers: []
       }
 
-    case REMOVE_ALERT:
-    return {
-      ...state,
-      alert: null
-    }
-
     default:
-      throw new Error(`Unknown action type: ${action.type}`);
-  }
-}
+      throw new Error(`unknown action type: ${action.type}`);
+  };
+};
+
+export default ParkReducer;

@@ -22,7 +22,7 @@ const Nav = () => {
             <Address />
             <Time />
           </Stack>
-          <Box sx={{ position: "fixed", top: 12, right: 10, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ position: "fixed", top: 10, right: 8, display: { xs: "none", md: "flex" } }}>
             <NavLogo />
           </Box>
         </Box>

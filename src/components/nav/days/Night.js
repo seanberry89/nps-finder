@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, IconButton, Paper, Stack, styled, Typography } from '@mui/material';
-import { flexCenter } from '../../theme/CustomTheme';
-import { GiSunset } from 'react-icons/gi';
+import { flexCenter } from '../../../theme/CustomTheme';
+import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { MdCancel } from 'react-icons/md';
 
 const StyledPaper = styled(Paper) `
 
   position: relative;
-  background-color: #1D71F2;
-  background-image: linear-gradient(to top right, #F1671F, #152852);
+  background-color: #0D1130;
+  background-image: linear-gradient(#0D1130, #283785);
   color: #fff;
 
   border-radius: 30px;
@@ -27,7 +27,7 @@ padding: 0;
 
 `;
 
-const Sunset = ({ time, setVisible }) => {
+const Night = ({ time, setVisible }) => {
 
   const closeBtn = () => {
 
@@ -40,7 +40,7 @@ const Sunset = ({ time, setVisible }) => {
       <StyledPaper elevation={6}>
         <CloseButton sx={{ position: "absolute", top: 0, left: -5 }} onClick={closeBtn}><MdCancel color="#487021" size={20} /></CloseButton>
         <Stack sx={{ textAlign: "center" }} justifyContent="center" alignItems="center" direction="row" spacing={2}>
-          <GiSunset size={20} />
+          <BsFillMoonStarsFill size={20} />
           <Typography sx={{ fontFamily: "Lato", fontWeight: "300" }} color="#fff" variant="h5">{time.toLocaleTimeString([], {
             hour: "2-digit", minute: "2-digit"
           })}</Typography>
@@ -50,4 +50,4 @@ const Sunset = ({ time, setVisible }) => {
   )
 }
 
-export default Sunset;
+export default Night;

@@ -1,11 +1,11 @@
 export const FIND_MARKERS = 'FIND_MARKERS';
 export const SEARCH_PARKS = 'SEARCH_PARKS';
 export const SEARCH_PARKS_COORDS = 'SEARCH_PARKS_COORDS';
+export const SEARCH_PARKS_ADDRESS = 'SEARCH_PARKS_ADDRESS';
 export const REVERSE_GEO = 'REVERSE_GEO';
+export const SET_SHOW_SEARCH = 'SET_SHOW_SEARCH';
 export const SET_MARKERS = 'SET_MARKERS';
 export const SET_POSITION = 'SET_POSITION';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_ERROR = 'SET_ERROR';
-export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_MARKERS = 'CLEAR_MARKERS';
-export const REMOVE_ALERT = 'REMOVE_ALERT';

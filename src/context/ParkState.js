@@ -1,18 +1,18 @@
 import { useReducer } from 'react';
-import AdventureContext from './adventureContext';
-import AdventureReducer from './adventureReducer';
+import ParkContext from './parkContext';
+import ParkReducer from './ParkReducer';
 import {
   REVERSE_GEO,
   FIND_MARKERS,
   SEARCH_PARKS,
   SEARCH_PARKS_COORDS,
+  SEARCH_PARKS_ADDRESS,
+  SET_SHOW_SEARCH,
   SET_MARKERS,
   SET_POSITION,
   SET_LOADING,
   SET_ERROR,
-  SET_ALERT,
-  CLEAR_MARKERS,
-  REMOVE_ALERT } from './types';
+  CLEAR_MARKERS } from './actions';
 
 import axios from 'axios';
 
@@ -23,14 +23,16 @@ const AdventureState = (props) => {
     parks: {},
     searches: {},
     searchCoords: null,
+    showSearch: false,
     markers: [],
-    address: {},
+    geoAddress: {},
+    parkAddress: null,
     error: null,
     alert: null,
     loading: false
   }
 
-  const [state, dispatch] = useReducer(AdventureReducer, initialState);
+  const [state, dispatch] = useReducer(ParkReducer, initialState);
 
 
   // ask permission when component loads or when user clicks button: onClick listener
@@ -38,7 +40,7 @@ const AdventureState = (props) => {
   // fetch the user coordinates via permission api / geolocation api
 
 
-  // gets park data based on user's input search
+  // get park data based on user's input search
   const searchParks = async (text) => {
 
     try {
@@ -48,18 +50,19 @@ const AdventureState = (props) => {
       dispatch({
         type: SEARCH_PARKS,
         payload: response.data
-      })
+      });
 
     } catch(error){
 
       dispatch({
         type: SET_ERROR,
         payload: error.response.msg
-      })
+      });
 
-    }
+    };
 
   };
+
 
   // get coordinates from park search for populating nearby parks
   const searchParksCoords = (coords) => {
@@ -67,9 +70,32 @@ const AdventureState = (props) => {
     dispatch({
       type: SEARCH_PARKS_COORDS,
       payload: coords
-    })
+    });
 
-  }
+  };
+
+
+  // get the searched park data for address
+  const searchParksAddress = (park) => {
+
+    dispatch({
+      type: SEARCH_PARKS_ADDRESS,
+      payload: park
+    });
+
+  };
+
+
+  // toggles search results
+  const setShowSearch = (boolean) => {
+
+    dispatch({
+      type: SET_SHOW_SEARCH,
+      payload: boolean
+    });
+
+  };
+
 
   // gets address data based on the geolocation coordinates
   const reverseGeo = async (coordinates) => {
@@ -83,16 +109,16 @@ const AdventureState = (props) => {
       dispatch({
         type: REVERSE_GEO,
         payload: response.data
-      })
+      });
 
     } catch(error){
 
       dispatch({
         type: SET_ERROR,
         payload: error.response.msg
-      })
+      });
 
-    }
+    };
 
   };
 
@@ -107,27 +133,30 @@ const AdventureState = (props) => {
       dispatch({
         type: FIND_MARKERS,
         payload: response
-      })
+      });
 
     } catch(error){
 
       dispatch({
         type: SET_ERROR,
         payload: error.response.msg
-      })
+      });
 
-    }
+    };
 
   };
 
+
+  // filters markers based on user's coordinates
   const setMarkers = (park) => {
 
     dispatch({
       type: SET_MARKERS,
       payload: park
-    })
+    });
 
-  }
+  };
+
 
   // returns the position of the map to the geolocation coordinates
   const setPosition = (coords) => {
@@ -156,51 +185,40 @@ const AdventureState = (props) => {
   };
 
 
-  // controls alerts:
-  const setAlert = (msg) => {
-
-    dispatch({
-      type: SET_ALERT,
-      payload: msg
-    });
-
-    setTimeout(() => {
-      dispatch({ type: REMOVE_ALERT })
-    }, 3000)
-
-  };
-
   // clears markers
   const clearMarkers = () => {
 
     dispatch({
       type: CLEAR_MARKERS
-    })
+    });
 
-  }
+  };
 
 
   return (
-    <AdventureContext.Provider value={{
+    <ParkContext.Provider value={{
       parks: state.parks,
       searches: state.searches,
       searchCoords: state.searchCoords,
       markers: state.markers,
-      address: state.address,
+      geoAddress: state.geoAddress,
+      parkAddress: state.parkAddress,
+      showSearch: state.showSearch,
       searchParks,
       searchParksCoords,
+      searchParksAddress,
+      setShowSearch,
       reverseGeo,
       findMarkers,
-      setMarkers,
       setPosition,
+      setMarkers,
       setLoading,
       setError,
-      setAlert,
       clearMarkers
     }}>
       {props.children}
-    </AdventureContext.Provider>
-  )
-}
+    </ParkContext.Provider>
+  );
+};
 
 export default AdventureState;

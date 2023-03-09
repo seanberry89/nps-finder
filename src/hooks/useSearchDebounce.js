@@ -22,7 +22,6 @@ export const useSearchDebounce = (value, delay) => {
       // eslint-disable-next-line
   }, [value, delay]);
 
-
   return debounceSearch;
 
 };
