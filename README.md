@@ -1,11 +1,30 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# NPS Finder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+An application for hikers and outdoor enthusiasts. This program uses the National Park Service API & Google Maps API to find national parks and historic sites around the user’s location.
 
-In the project directory, you can run:
+## Features
+
+* JavaScript
+* React JS
+* MUI Core
+* National Park Service API
+* Google Maps API
+* Geolocation API
+* Context API
+
+## Instructions
+
+![Home](/src/images/project-images/nps-finder-home.png)
+
+![Search](/src/images/project-images/nps-finder-search.png)
+
+![Markers](/src/images/project-images/nps-finder-markers.png)
+
+![Park](/src/images/project-images/nps-finder-park.png)
+
+
 
 ### `npm start`
 
@@ -69,6 +88,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# nps-finder
->>>>>>> e6c707ab1aaa4f973a8340b31d367b2463eff568

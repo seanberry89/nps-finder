@@ -4,10 +4,10 @@ import { useLoadScript } from '@react-google-maps/api';
 
 import './App.css';
 
-import Nav from './components/nav/Nav';
-import Map from './components/map/Map';
+import Nav from './components/header/Nav';
+import Map from './components/main/Map';
 import Footer from './components/footer/Footer';
-import Loader from './components/map/Loading';
+import Loader from './components/main/Loading';
 
 
 function App() {

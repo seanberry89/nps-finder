@@ -18,7 +18,7 @@ const StyledButton = styled(Button) `
 const GeoButton = ({ text, setText }) => {
 
   const adventureContext = useContext(AdventureContext);
-  const { markers, findMarkers } = adventureContext;
+  const { markers, parkAddress, findMarkers } = adventureContext;
 
 
   const onClick = () => {
@@ -37,6 +37,7 @@ const GeoButton = ({ text, setText }) => {
 
   };
 
+
   return (
 
     <Box sx={{ zIndex: 10 }}>
@@ -44,19 +45,28 @@ const GeoButton = ({ text, setText }) => {
         <StyledButton onClick={onClick}>
           <RiCompass3Line size={25} />
         </StyledButton>
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
 
-          { markers.length === 0 ? (
+        { !parkAddress ? (
 
-            <Typography color="#fff" variant="body2" fontWeight={700}>Find Parks Near You</Typography>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            { markers.length === 0 ? (
+              <Typography color="#fff" variant="body2" fontWeight={700}>Find Parks Near You</Typography>
+            ) : (
+              <Typography color="#fff" variant="body2" fontWeight={700}>Parks Found!</Typography>
+            )}
+          </Box>
 
-          ) : (
+        ) : (
 
-            <Typography color="#fff" variant="body2" fontWeight={700}>Parks Found!</Typography>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            { markers.length === 0 ? (
+              <Typography color="#fff" variant="body2" fontWeight={700}>Find Parks Near {parkAddress.fullName}</Typography>
+            ) : (
+              <Typography color="#fff" variant="body2" fontWeight={700}>Parks Found!</Typography>
+            )}
+          </Box>
 
-          )}
-
-        </Box>
+        )}
       </Stack>
     </Box>
 

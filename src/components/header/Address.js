@@ -73,7 +73,7 @@ const Address = () => {
               { !parkAddress ? (
 
                 <Fragment>
-                  <Typography variant="body2">Estimated User Address:</Typography>
+                  <Typography variant="body2">Estimated User Location:</Typography>
                   { geo && geo.slice(0, 1).map((item) => (
                       <Typography key={id} variant="h6" fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{item.formatted_address.replace(", USA", "")}</Typography>
                     )

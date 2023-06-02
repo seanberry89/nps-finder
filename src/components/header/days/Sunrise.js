@@ -33,7 +33,7 @@ const Sunrise = ({ time, setVisible }) => {
 
     setVisible(false);
 
-  }
+  };
 
   return (
       <Box sx={flexCenter}>

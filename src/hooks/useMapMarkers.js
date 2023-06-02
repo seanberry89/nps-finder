@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import AdventureContext from '../context/parkContext';
 import useGeolocation from './useGeolocation';
 
-const useGeoMarkers = (searchCoords) => {
+const useMapMarkers = (searchCoords) => {
 
   const coordinates = useGeolocation();
   const { latitude, longitude } = coordinates;
@@ -38,7 +38,7 @@ const useGeoMarkers = (searchCoords) => {
 
             return null;
 
-          }
+          };
 
           // user searches for a location
         } else if(searchCoords){
@@ -51,15 +51,15 @@ const useGeoMarkers = (searchCoords) => {
 
               setMarkers(park);
 
-            }, 250 );
+            }, 250);
 
           } else {
 
             return null;
 
-          }
+          };
 
-        }
+        };
 
       })
 
@@ -68,6 +68,6 @@ const useGeoMarkers = (searchCoords) => {
     // eslint-disable-next-line
   }, [parks])
 
-}
+};
 
-export default useGeoMarkers;
+export default useMapMarkers;

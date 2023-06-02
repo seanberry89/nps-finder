@@ -10,7 +10,7 @@ import MarkerAddress from './MarkerAddress';
 
 import ParkContext from '../../context/parkContext';
 import useGeolocation from '../../hooks/useGeolocation';
-import useGeoMarkers from '../../hooks/useGeoMarkers';
+import useMapMarkers from '../../hooks/useMapMarkers';
 
 
 const options = {
@@ -39,12 +39,16 @@ const Map = () => {
   const parkContext = useContext(ParkContext);
   const { markers, searchCoords, setShowSearch } = parkContext;
 
+
   const coordinates = useGeolocation();
   const { latitude, longitude } = coordinates;
 
-  useGeoMarkers(searchCoords);
+
+  useMapMarkers(searchCoords);
+
 
   const [ selected, setSelected ] = useState(null);
+
 
   const center = useMemo(() => (
     { lat: latitude, lng: longitude }
@@ -52,13 +56,6 @@ const Map = () => {
 
 
   const id = uuidv4();
-
-
-  // Note: create a conditional to update the position of the map when the map loads, when a park is searched and selected, and when the map needs to be positioned back to the geolocation (comparison of two states: coordinates and park search)
-
-  // undefined value because position hasn't been given the coords yet
-
-  // Note: what if I were to use the marker coordinates as its own state for the park search?
 
 
   const loadGeo = (marker) => {
@@ -81,7 +78,7 @@ const Map = () => {
     setShowSearch(false);
 
   };
-  
+
 
   return (
 
@@ -93,7 +90,7 @@ const Map = () => {
 
           { markers.length === 0 && (
 
-          <MarkerF position={searchCoords ? searchCoords : center} icon={{ url: 'https://cdn-icons-png.flaticon.com/512/8972/8972440.png', scaledSize: new window.google.maps.Size(50, 50) }} title="You are here" onLoad={loadGeo} />
+          <MarkerF position={ searchCoords ? searchCoords : center } icon={{ url: 'https://cdn-icons-png.flaticon.com/512/8972/8972440.png', scaledSize: new window.google.maps.Size(50, 50) }} title="You are here" onLoad={loadGeo} />
 
           ) }
 
@@ -106,7 +103,6 @@ const Map = () => {
           { selected && ( <InfoWindowF position={{ lat: parseFloat(selected.latitude), lng: parseFloat(selected.longitude)}} onCloseClick={() => setSelected(null)}>
 
             <Fragment>
-
               <Stack sx={{ textAlign: "center" }} direction="column" justifyContent="center" alignItems="center" spacing={2}>
                 <Typography sx={{ color: "#487021", fontWeight: "600" }} variant="h5">{selected.fullName}</Typography>
 
@@ -124,7 +120,6 @@ const Map = () => {
 
                 <Typography variant="body2">{selected.description}</Typography>
               </Stack>
-
             </Fragment>
 
           </InfoWindowF> )}

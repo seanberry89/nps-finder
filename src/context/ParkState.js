@@ -31,13 +31,9 @@ const AdventureState = (props) => {
     alert: null,
     loading: false
   }
+  
 
   const [state, dispatch] = useReducer(ParkReducer, initialState);
-
-
-  // ask permission when component loads or when user clicks button: onClick listener
-  // two functions: search for trails and trails near me
-  // fetch the user coordinates via permission api / geolocation api
 
 
   // get park data based on user's input search

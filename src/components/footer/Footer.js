@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <Box sx={{ ...fixedBottom, backgroundColor: "rgba(0, 0, 0, 0.3)", backdropFilter: "blur(3px)", height: "15vh" }}>
-      <Stack sx={{ height: "110%" }} justifyContent="center" alignItems="center" direction="row" spacing={2}>
+      <Stack sx={{ height: "110%" }} justifyContent="center" alignItems="center" direction="row" spacing={{ xs: 2, md: 5 }}>
         <Search text={text} setText={setText} />
         <GeoButton text={text} setText={setText} />
       </Stack>

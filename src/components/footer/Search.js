@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { Box, ListItem, ListItemButton, ListItemText, Grid, Stack, styled, TextField } from '@mui/material';
+import { Box, ListItem, ListItemButton, ListItemText, Grid, Stack, styled, TextField, debounce } from '@mui/material';
 import { motion } from 'framer-motion';
 import { flexCenter } from '../../theme/CustomTheme';
 
@@ -87,15 +87,14 @@ const Search = ({ text, setText }) => {
 
   const [ didMount, setDidMount ] = useState(false);
 
-  const debounceSearch = useSearchDebounce(text, 1500);
+  const debounceSearch = useSearchDebounce(text, 1000);
+
 
   useEffect(() => {
 
     if(!didMount){
 
       setDidMount(true);
-
-      return;
 
     };
 
@@ -123,9 +122,6 @@ const Search = ({ text, setText }) => {
 
     clearMarkers();
 
-    // unless I insert the item into another setState?
-    // setParkAddress();
-
   };
 
 
@@ -141,7 +137,6 @@ const Search = ({ text, setText }) => {
     setShowSearch(true);
 
   };
-
 
   return (
 
