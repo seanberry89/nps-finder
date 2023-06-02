@@ -1,20 +1,20 @@
 # NPS Finder
 
-## Description
+### Description
 
-An application for hikers and outdoor enthusiasts. This program uses the National Park Service API & Google Maps API to find national parks and historic sites around the user’s location.
+An application for hikers and outdoor enthusiasts. This program uses the National Park Service API & Google Maps API to find national parks and historic sites around a user’s location.
 
-## Features
+### Tech
 
 * JavaScript
-* React JS
+* ReactJS
 * MUI Core
 * National Park Service API
 * Google Maps API
 * Geolocation API
 * Context API
 
-## Instructions
+### Instructions
 
 ![Home](/src/images/project-images/nps-finder-home.png)
 
