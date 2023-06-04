@@ -140,11 +140,11 @@ const Search = ({ text, setText }) => {
 
   return (
 
-    <Box sx={{ ...flexCenter, position: "relative", width: "400px", height: "40px", borderRadius: 5, backgroundColor: "#fff", zIndex: 5 }}>
+    <Box sx={{ ...flexCenter, position: "relative", width: { xs: "300px", md: "400px" }, height: "40px", borderRadius: 5, backgroundColor: "#fff", zIndex: 5 }}>
 
       <Stack sx={{ width: "98%", height: "100%", px: 2 }} direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
 
-        <StyledTextField variant="standard" value={text} InputProps={{ disableUnderline: true }} placeholder="search for a national park" onChange={onChange} onFocus={onFocus} />
+        <StyledTextField variant="standard" value={text} spellCheck="false" InputProps={{ disableUnderline: true }} placeholder="search for a national park" onChange={onChange} onFocus={onFocus} />
 
         <FiSearch color="#bebebe" size={25} />
 
@@ -167,7 +167,6 @@ const Search = ({ text, setText }) => {
                   </ResultsItemButton>
                 </ResultsItem>
               </Grid>
-
             )) }
 
           </Grid>

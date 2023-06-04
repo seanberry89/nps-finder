@@ -68,14 +68,14 @@ const Address = () => {
         <Box sx={{ flexCenter }}>
           <StyledPaper elevation={6}>
             <CloseButton sx={{ position: "absolute", top: -3, left: -5 }} onClick={closeBtn}><MdCancel color="#487021" size={20} /></CloseButton>
-            <Stack sx={{ mt: 1.5 }} justifyContent="flex-start" alignItems="flex-start" direction="column" spacing={-0.5}>
+            <Stack sx={{ mt: 1.5 }} justifyContent="flex-start" alignItems="flex-start" direction="column" spacing={{ xs: 0 }}>
 
               { !parkAddress ? (
 
                 <Fragment>
-                  <Typography variant="body2">Estimated User Location:</Typography>
+                  <Typography fontWeight={400} fontSize={{ xs: 14, md: 16 }}>Estimated User Location:</Typography>
                   { geo && geo.slice(0, 1).map((item) => (
-                      <Typography key={id} variant="h6" fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{item.formatted_address.replace(", USA", "")}</Typography>
+                      <Typography key={id} fontSize={{ xs: "15px", md: "18px" }} fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{item.formatted_address.replace(", USA", "")}</Typography>
                     )
                   )}
                 </Fragment>
@@ -83,8 +83,8 @@ const Address = () => {
               ) : (
 
                 <Fragment>
-                  <Typography fontWeight={400} variant="body2">Searched {parkAddress.designation}:</Typography>
-                  <Typography key={id} variant="h6" fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{parkAddress.fullName}, {parkAddress.states}</Typography>
+                  <Typography fontWeight={400} fontSize={{ xs: 14, md: 16 }}>Searched {parkAddress.designation}:</Typography>
+                  <Typography key={id} fontSize={{ xs: "15px", md: "18px" }} fontFamily="Roboto" fontWeight={500} sx={{ mt: 2 }}>{parkAddress.fullName}, {parkAddress.states}</Typography>
                 </Fragment>
 
               )}

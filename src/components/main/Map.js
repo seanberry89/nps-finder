@@ -104,7 +104,7 @@ const Map = () => {
 
             <Fragment>
               <Stack sx={{ textAlign: "center" }} direction="column" justifyContent="center" alignItems="center" spacing={2}>
-                <Typography sx={{ color: "#487021", fontWeight: "600" }} variant="h5">{selected.fullName}</Typography>
+                <Typography color="#487021" fontWeight={600} fontSize={{xs: "22px", md: "30px" }}>{selected.fullName}</Typography>
 
                 { selected.images && selected.images.slice(0,1).map((image) => (
                   <Box key={id}>
@@ -118,7 +118,7 @@ const Map = () => {
                   </Box>
                 ))}
 
-                <Typography variant="body2">{selected.description}</Typography>
+                <Typography fontSize={{ xs: "14px", md: "16px" }}>{selected.description}</Typography>
               </Stack>
             </Fragment>
 
