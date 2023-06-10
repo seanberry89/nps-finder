@@ -15,7 +15,7 @@ An application for hikers and outdoor enthusiasts. This program uses the Nationa
 * Geolocation API
 * Context API
 
-### Instructions
+### Traverse the UI
 
 ![Home](/src/images/project-images/nps-finder-home.png)
 
