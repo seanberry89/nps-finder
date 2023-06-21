@@ -12,7 +12,6 @@ import ParkContext from '../../context/parkContext';
 import useGeolocation from '../../hooks/useGeolocation';
 import useMapMarkers from '../../hooks/useMapMarkers';
 
-
 const options = {
 
   mapId: "6da87616724ec22e",
@@ -32,7 +31,6 @@ const mapContainerStyle = {
   width: "100%"
 
 };
-
 
 const Map = () => {
 
