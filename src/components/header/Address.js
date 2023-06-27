@@ -38,6 +38,8 @@ const Address = () => {
 
   let geo = geoAddress.results;
 
+  console.log(geo);
+
   const id = uuidv4();
 
 
