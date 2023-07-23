@@ -9,7 +9,6 @@ import Map from './components/main/Map';
 import Footer from './components/footer/Footer';
 import Loader from './components/main/Loading';
 
-
 function App() {
 
   const { isLoaded } = useLoadScript({
