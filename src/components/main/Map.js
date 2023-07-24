@@ -40,6 +40,7 @@ const Map = () => {
 
   const coordinates = useGeolocation();
   const { latitude, longitude } = coordinates;
+  console.log(coordinates);
 
 
   useMapMarkers(searchCoords);
