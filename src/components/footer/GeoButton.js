@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Box, Button, Stack, styled, Typography } from '@mui/material';
 import { RiCompass3Line } from 'react-icons/ri';
 import AdventureContext from '../../context/parkContext';

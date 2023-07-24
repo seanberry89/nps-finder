@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 
 import AppTheme from './theme/AppTheme';
@@ -10,7 +10,11 @@ import ParkState from './context/ParkState';
 // Reference 1: https://github.com/JustFly1984/react-google-maps-api/issues/3095
 // Reference 2: https://github.com/google-map-react/google-map-react/issues/1129
 
-ReactDOM.render(
+const container = document.getElementById('root');
+
+const root = createRoot(container);
+
+root.render(
 
   <StrictMode>
     <AppTheme>
@@ -18,7 +22,6 @@ ReactDOM.render(
         <App />
       </ParkState>
     </AppTheme>
-  </StrictMode>,
-  document.getElementById('root')
-  
+  </StrictMode>
+
 );

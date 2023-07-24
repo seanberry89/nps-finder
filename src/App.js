@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { CssBaseline } from '@mui/material';
 import { useLoadScript } from '@react-google-maps/api';
 

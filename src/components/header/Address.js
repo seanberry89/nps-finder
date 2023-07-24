@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState, useEffect } from 'react';
+import React, {Fragment, useContext, useState, useEffect } from 'react';
 import { Box, IconButton, Paper, Stack, styled, Typography } from '@mui/material';
 import { flexCenter } from '../../theme/CustomTheme';
 import { MdCancel } from 'react-icons/md';

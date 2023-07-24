@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import React, { useReducer } from 'react';
 import ParkContext from './parkContext';
 import ParkReducer from './ParkReducer';
 import {

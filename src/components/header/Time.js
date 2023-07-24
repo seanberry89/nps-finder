@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import Sunrise from './days/Sunrise';
 import Morning from './days/Morning';
